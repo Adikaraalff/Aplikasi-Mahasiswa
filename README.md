@@ -4,6 +4,6 @@ Aplikasi Sederhana Mahasiswa Menggunakan Bahasa PHP dan Larave. Terdapat Fitur C
 
 Penambahan Fitur Dapat Menambahkan Image, membuat Data Table, Memberi Nomor Urut. Kemudian membuat Form Login dan membuat table Dosen.
 
-For the Test => http://127.0.0.1:8000/mahasiswas
-For the Test => http://127.0.0.1:8000/dosens
+For the Test => http://127.0.0.1:8000/mahasiswas,
+For the Test => http://127.0.0.1:8000/dosens,
 For the Test => http://127.0.0.1:8000/register
