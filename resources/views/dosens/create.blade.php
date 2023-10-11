@@ -1,14 +1,13 @@
-@extends('mahasiswas.layout')
+@extends('dosens.layout')
 
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Add New Mahasiswa</h2>
+            <h2>Add New Dosen</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('mahasiswas.index')
-}}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('dosens.index')}}"> Back</a>
         </div>
     </div>
 </div>
@@ -25,9 +24,8 @@
 </div>
 @endif
 
-<form action="{{ route('mahasiswas.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('dosens.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
-
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
@@ -37,14 +35,8 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Nim:</strong>
-                <input type="text" name="nim" class="form-control" placeholder="Nim">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Kelas:</strong>
-                <input type="text" name="kelas" class="form-control" placeholder="Kelas">
+                <strong>Nip:</strong>
+                <input type="text" name="nip" class="form-control" placeholder="Nip">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -67,14 +59,8 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Username:</strong>
-                <input type="text" name="username" class="form-control" placeholder="Username">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Password:</strong>
-                <input type="text" name="password" class="form-control" placeholder="Password">
+                <strong>Alamat:</strong>
+                <textarea name="alamat" cols="200" rows="3"></textarea>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
