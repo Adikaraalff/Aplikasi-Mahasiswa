@@ -6,4 +6,3 @@ Penambahan Fitur Dapat Menmbahkan Image dan membuat table Dosen, kemudian membua
 For the Test => http://127.0.0.1:8000/mahasiswas
 For the Test => http://127.0.0.1:8000/dosens
 For the Test => http://127.0.0.1:8000/register
->>>>>>> 216868230203d734c71b99c0bbf39c62a28c27ed
