@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
 
 class MahasiswaController extends Controller
@@ -11,6 +12,16 @@ class MahasiswaController extends Controller
     /**
      * Display a listing of the resource.
      */
+    function __construct()
+    {
+        $this->middleware(
+            'permission:mahasiswa-list|mahasiswa-create|mahasiswa-edit|mahasiswa-delete',
+            ['only' => ['index', 'show']]
+        );
+        $this->middleware('permission:mahasiswa-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:mahasiswa-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:mahasiswa-delete', ['only' => ['destroy']]);
+    }
     public function index_old()
     {
         //
@@ -37,19 +48,23 @@ class MahasiswaController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    //$btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
-                    $btn = '<form action="' . route('mahasiswas.destroy', $row->id) . '"method="POST">
-                    <a class="btn btn-info" href="' . route('mahasiswas.show', $row->id) . '">Show</a>
-                    <a class="btn btn-primary" href="' . route('mahasiswas.edit', $row->id) . '">Edit</a>' . csrf_field() . method_field('DELETE') .
-                        '<button type="submit" class="btn btn-danger">Delete</button></form>';
-                    return $btn;
+                $btn = '<form action="' . route('mahasiswas.destroy', $row->id) . '"method="POST">
+                <a class="btn btn-info" href="' . route('mahasiswas.show', $row->id) .'">Show</a>';
+                // dd(Auth::user());
+                if (Auth::user()->can('mahasiswa-edit')) {
+                    $btn = $btn . '<a class="btn btn-primary" href="' . route('mahasiswas.edit', $row->id) . '">Edit</a>';
+                }
+                if (Auth::user()->can('mahasiswa-delete')) {
+                    $btn = $btn . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger">Delete</button>';
+                }
+                $btn = $btn . '</form>';
+                return $btn;        
                 })
                 ->rawColumns(['action'])
                 ->make(true);
         }
         return view('mahasiswas.index');
     }
-
 
     /**
      * Show the form for creating a new resource.

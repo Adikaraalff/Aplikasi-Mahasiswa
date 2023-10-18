@@ -4,17 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\Dosen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
 
 class DosenController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware(
+            'permission:dosen-list|dosen-create|dosen-edit|dosen-delete',
+            ['only' => ['index', 'show']]
+        );
+        $this->middleware('permission:dosen-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:dosen-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:dosen-delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      */
     public function index_old()
     {
         //
-        $mahasiswas = Dosen::latest()->paginate(5);
+        $dosens = Dosen::latest()->paginate(5);
         return view('dosens.index', compact('dosens'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -34,15 +45,20 @@ class DosenController extends Controller
             }
             $data = $query_data->orderBy('name', 'asc')->get();
             return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    //$btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
-                    $btn = '<form action="' . route('dosens.destroy', $row->id) . '"method="POST">
-                    <a class="btn btn-info" href="' . route('dosens.show', $row->id) . '">Show</a>
-                    <a class="btn btn-primary" href="' . route('dosens.edit', $row->id) . '">Edit</a>' . csrf_field() . method_field('DELETE') .
-                        '<button type="submit" class="btn btn-danger">Delete</button></form>';
-                    return $btn;
-                })
+            ->addIndexColumn()
+            ->addColumn('action', function ($row) {
+            $btn = '<form action="' . route('dosens.destroy', $row->id) . '"method="POST">
+            <a class="btn btn-info" href="' . route('dosens.show', $row->id) .'">Show</a>';
+            // dd(Auth::user());
+            if (Auth::user()->can('dosen-edit')) {
+                $btn = $btn . '<a class="btn btn-primary" href="' . route('dosens.edit', $row->id) . '">Edit</a>';
+            }
+            if (Auth::user()->can('dosen-delete')) {
+                $btn = $btn . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger">Delete</button>';
+            }
+            $btn = $btn . '</form>';
+            return $btn;        
+            })
                 ->rawColumns(['action'])
                 ->make(true);
         }
@@ -141,9 +157,9 @@ class DosenController extends Controller
             unset($input['image']);
         }
 
-        Dosen::create($input);
+        // Dosen::create($input);
 
-        $dosen->update($request->all());
+        $dosen->update($input);
 
         return redirect()->route('dosens.index')
             ->with('success', 'Dosen updated successfully');

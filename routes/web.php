@@ -3,9 +3,13 @@
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::resource('mahasiswas', MahasiswaController::class);
+Route::resource('users', UserController::class);
+Route::resource('roles', RoleController::class);
 Route::resource('dosens', DosenController::class);
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class,'postLogin'])->name('login.post');

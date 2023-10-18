@@ -48,12 +48,16 @@
 
                 <a class="btn btn-info" href="{{route('mahasiswas.show',$mahasiswa->id) }}">Show</a>
 
-                <a class="btn btn-primary" href="{{route('mahasiswas.edit',$mahasiswa->id) }}">Edit</a>
+                @can('mahasiswa-edit')
+                <a class="btn btn-primary" href="{{ route('mahasiswas.edit',$mahasiswa->id) }}">Edit</a>
+                <!-- <a class="btn btn-primary" href="{{route('mahasiswas.edit',$mahasiswa->id) }}">Edit</a> -->
+                @endcan
 
                 @csrf
                 @method('DELETE')
-
-                <button type="submit" class="btn btn-danger">Delete</button>
+                @can('mahasiswa-delete')
+                <button type="submit" class="btn btndanger">Delete</button>
+                @endcan
             </form>
         </td>
     </tr>
