@@ -14,6 +14,6 @@ for the instalation
 4. php artisan db:seed --class=CreateAdminUserSeeder
 5. php artisan serve
 
-6. test to http://127.0.0.1:8000/login
+6. test to http://127.0.0.1:8000/login,
    user : adikara@yopmail.com
    password : 12345678
