@@ -12,8 +12,10 @@ for the instalation
 2. php artisan migrate
 3. php artisan db:seed --class=PermissionTableSeeder
 4. php artisan db:seed --class=CreateAdminUserSeeder
-5. php artisan serve
+5. php artisan db:seed --class=CreateKelasSeeder
+6. php artisan db:seed --class=CreateProdiSeeder
+7. php artisan serve
 
-6. test to http://127.0.0.1:8000/login,
+8. test to http://127.0.0.1:8000/login,
    user : adikara@yopmail.com
    password : 12345678
