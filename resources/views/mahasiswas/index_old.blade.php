@@ -36,7 +36,7 @@
         <td>{{ ++$i }}</td>
         <td>{{ $mahasiswa->name }}</td>
         <td>{{ $mahasiswa->nim }}</td>
-        <td>{{ $mahasiswa->kelas }}</td>
+        <td>{{ $mahasiswa->id_kelas }}</td>
         <td>{{ $mahasiswa->prodi }}</td>
         <td>{{ $mahasiswa->nohp }}</td>
         <td>{{ $mahasiswa->email }}</td>

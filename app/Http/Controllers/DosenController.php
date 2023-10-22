@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dosen;
+use App\Models\Prodi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
@@ -59,6 +60,10 @@ class DosenController extends Controller
             $btn = $btn . '</form>';
             return $btn;        
             })
+            ->addColumn('id_prodi', function (Dosen $cb) {
+                return $cb->prodi->nama;
+            })
+            
                 ->rawColumns(['action'])
                 ->make(true);
         }
@@ -71,8 +76,9 @@ class DosenController extends Controller
      */
     public function create()
     {
+        $data_prodi = Prodi::All();
         //
-        return view('dosens.create');
+        return view('dosens.create', compact('data_prodi'));
     }
 
     /**
@@ -84,7 +90,7 @@ class DosenController extends Controller
         $request->validate([
             'name' => 'required',
             'nip' => 'required',
-            'prodi' => 'required',
+            'id_prodi' => 'required',
             'nohp' => 'required',
             'email' => 'required',
             'alamat' => 'required',
@@ -136,7 +142,7 @@ class DosenController extends Controller
         $request->validate([
             'name' => 'required',
             'nip' => 'required',
-            'prodi' => 'required',
+            'id_prodi' => 'required',
             'nohp' => 'required',
             'email' => 'required',
             'alamat' => 'required',

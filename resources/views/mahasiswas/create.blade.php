@@ -44,13 +44,25 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Kelas:</strong>
-                <input type="text" name="kelas" class="form-control" placeholder="Kelas">
+                <select name="id_kelas" class="form-control">
+                    <?php
+                foreach($data_kelas as $kelas){
+                        echo "<option value='".$kelas['id']."'>".$kelas['nama']."</option>";
+                    }
+                    ?>
+                </select>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Prodi:</strong>
-                <input type="text" name="prodi" class="form-control" placeholder="Prodi">
+                <select name="id_prodi" class="form-control">
+                    <?php
+                foreach($data_prodi as $prodi){
+                        echo "<option value='".$prodi['id']."'>".$prodi['nama']."</option>";
+                    }
+                    ?>
+                </select>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

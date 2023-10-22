@@ -42,7 +42,13 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Prodi:</strong>
-                <input type="text" name="prodi" class="form-control" placeholder="Prodi">
+                <select name="id_prodi" class="form-control">
+                    <?php
+                foreach($data_prodi as $prodi){
+                        echo "<option value='".$prodi['id']."'>".$prodi['nama']."</option>";
+                    }
+                    ?>
+                </select>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

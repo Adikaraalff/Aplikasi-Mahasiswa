@@ -11,6 +11,15 @@ class Mahasiswa extends Model
     protected $table = "Mahasiswa";
 
     protected $fillable = [
-        'name', 'nim', 'kelas','prodi','nohp','email','username','password','image',
-    ];    
+        'name', 'nim', 'id_kelas','id_prodi','nohp','email','username','password','image',
+    ]; 
+    
+    public function kelas(){
+        return $this->hasOne(Kelas::class,'id','id_kelas');
+    }
+
+    public function prodi(){
+        return $this->hasOne(Prodi::class,"id", "id_prodi");
+    }
+
 }

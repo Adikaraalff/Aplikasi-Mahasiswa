@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
+use App\Models\Kelas;
+use App\Models\Prodi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
@@ -40,7 +42,7 @@ class MahasiswaController extends Controller
                 $query_data = $query_data->where(function ($query) use ($search_value) {
                     $query->where('name', 'like', $search_value)
                         ->orWhere('nim', 'like', $search_value)
-                        ->orWhere('kelas', 'like', $search_value)
+                        ->orWhere('id_kelas', 'like', $search_value)
                         ->orWhere('prodi', 'like', $search_value);
                 });
             }
@@ -48,17 +50,23 @@ class MahasiswaController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                $btn = '<form action="' . route('mahasiswas.destroy', $row->id) . '"method="POST">
-                <a class="btn btn-info" href="' . route('mahasiswas.show', $row->id) .'">Show</a>';
-                // dd(Auth::user());
-                if (Auth::user()->can('mahasiswa-edit')) {
-                    $btn = $btn . '<a class="btn btn-primary" href="' . route('mahasiswas.edit', $row->id) . '">Edit</a>';
-                }
-                if (Auth::user()->can('mahasiswa-delete')) {
-                    $btn = $btn . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger">Delete</button>';
-                }
-                $btn = $btn . '</form>';
-                return $btn;        
+                    $btn = '<form action="' . route('mahasiswas.destroy', $row->id) . '"method="POST">
+                <a class="btn btn-info" href="' . route('mahasiswas.show', $row->id) . '">Show</a>';
+                    // dd(Auth::user());
+                    if (Auth::user()->can('mahasiswa-edit')) {
+                        $btn = $btn . '<a class="btn btn-primary" href="' . route('mahasiswas.edit', $row->id) . '">Edit</a>';
+                    }
+                    if (Auth::user()->can('mahasiswa-delete')) {
+                        $btn = $btn . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger">Delete</button>';
+                    }
+                    $btn = $btn . '</form>';
+                    return $btn;
+                })
+                ->addColumn('id_kelas', function (Mahasiswa $ce) {
+                    return $ce->kelas->nama;
+                })
+                ->addColumn('id_prodi', function (Mahasiswa $ca) {
+                    return $ca->prodi->nama;
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -71,8 +79,10 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
+        $data_kelas = Kelas::All();
+        $data_prodi = Prodi::All();
         //
-        return view('mahasiswas.create');
+        return view('mahasiswas.create', compact('data_kelas','data_prodi'));
     }
 
     /**
@@ -84,8 +94,8 @@ class MahasiswaController extends Controller
         $request->validate([
             'name' => 'required',
             'nim' => 'required',
-            'kelas' => 'required',
-            'prodi' => 'required',
+            'id_kelas' => 'required',
+            'id_prodi' => 'required',
             'nohp' => 'required',
             'email' => 'required',
             'username' => 'required',
@@ -138,8 +148,8 @@ class MahasiswaController extends Controller
         $request->validate([
             'name' => 'required',
             'nim' => 'required',
-            'kelas' => 'required',
-            'prodi' => 'required',
+            'id_kelas' => 'required',
+            'id_prodi' => 'required',
             'nohp' => 'required',
             'email' => 'required',
             'username' => 'required',

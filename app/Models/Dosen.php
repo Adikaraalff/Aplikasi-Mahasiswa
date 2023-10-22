@@ -11,6 +11,10 @@ class Dosen extends Model
     protected $table = "Dosen";
 
     protected $fillable = [
-        'name', 'nip', 'prodi', 'nohp', 'email', 'alamat', 'image',
+        'name', 'nip', 'id_prodi', 'nohp', 'email', 'alamat', 'image',
     ];
+
+    public function prodi(){
+        return $this->hasOne(Prodi::class,"id", "id_prodi");
+    }
 }

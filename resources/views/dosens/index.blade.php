@@ -62,8 +62,8 @@
                         name: 'nip'
                     },
                     {
-                        data: 'prodi',
-                        name: 'prodi'
+                        data: 'id_prodi',
+                        name: 'id_prodi'
                     },
                     {
                         data: 'nohp',

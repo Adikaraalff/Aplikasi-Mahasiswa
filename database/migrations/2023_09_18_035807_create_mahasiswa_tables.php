@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->text('name');
             $table->string('nim');
-            $table->string('kelas');
-            $table->string('prodi');
+            $table->foreignId('id_kelas')->constrained('kelas')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('id_prodi')->constrained('prodi')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('nohp');
             $table->string('email');
             $table->string('username');

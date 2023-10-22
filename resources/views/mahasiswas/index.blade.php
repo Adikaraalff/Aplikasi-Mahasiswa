@@ -70,12 +70,12 @@
                     name: 'nim'
                 },
                 {
-                    data: 'kelas',
-                    name: 'kelas'
+                    data: 'id_kelas',
+                    name: 'id_kelas'
                 },
                 {
-                    data: 'prodi',
-                    name: 'prodi'
+                    data: 'id_prodi',
+                    name: 'id_prodi'
                 },
                 {
                     data: 'nohp',
