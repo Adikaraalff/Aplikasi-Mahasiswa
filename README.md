@@ -4,6 +4,16 @@ Aplikasi Sederhana Mahasiswa Menggunakan Bahasa PHP dan Larave. Terdapat Fitur C
 
 Penambahan Fitur Dapat Menambahkan Image, membuat Data Table, Memberi Nomor Urut. Kemudian membuat Form Login dan membuat table Dosen.
 
-For the Test => http://127.0.0.1:8000/mahasiswas,
-For the Test => http://127.0.0.1:8000/dosens,
-For the Test => http://127.0.0.1:8000/register
+![image](https://github.com/Adikaraalff/Aplikasi-Mahasiswa/assets/73709213/258dc8f8-04e6-40ad-bd54-61bbf30cf154)
+
+for the instalation
+
+1. php install composer
+2. php artisan migrate
+3. php artisan db:seed --class=PermissionTableSeeder
+4. php artisan db:seed --class=CreateAdminUserSeeder
+5. php artisan serve
+
+6. test to http://127.0.0.1:8000/login,
+   user : adikara@yopmail.com
+   password : 12345678
