@@ -35,6 +35,41 @@
     <tbody>
     </tbody>
 </table>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Are You Sure</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">x</span>
+                </button>
+            </div>
+            <div class="modal-body">Data yang dihapus tidak akan dikembalikan.</div>
+            <div class="modal-footer">
+                <form id="link_form" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function deleteConfirm(url) {
+        // $('#btn-delete').attr('href', 'url');
+        var frm = document.getElementById('link_form') || null;
+        if (frm) {
+            frm.action = url;
+        }
+        $('#deleteModal').modal();
+    }
+</script>
 <script type="text/javascript">
     $(function() {
         var table = $('.data-table').DataTable({

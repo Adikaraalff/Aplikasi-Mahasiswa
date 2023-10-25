@@ -8,6 +8,7 @@ use App\Models\Prodi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
+use PDF;
 
 class MahasiswaController extends Controller
 {
@@ -57,7 +58,8 @@ class MahasiswaController extends Controller
                         $btn = $btn . '<a class="btn btn-primary" href="' . route('mahasiswas.edit', $row->id) . '">Edit</a>';
                     }
                     if (Auth::user()->can('mahasiswa-delete')) {
-                        $btn = $btn . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger">Delete</button>';
+                        // $btn = $btn . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger">Delete</button>';
+                        $btn = $btn . "<a href=\"#\" onclick=\"deleteConfirm('".route('mahasiswas.destroy', $row->id)."')\" class=\"btn btn-danger\"><i class=\"fa fa-trash\"></i>Delete</a>";
                     }
                     $btn = $btn . '</form>';
                     return $btn;
@@ -189,5 +191,12 @@ class MahasiswaController extends Controller
 
         return redirect()->route('mahasiswas.index')
             ->with('success', 'Mahasiswa deleted successfully');
+    }
+
+    function exportPdf(){
+        $mahasiswas = Mahasiswa::all();
+        $pdf = PDF::loadview('mahasiswas.exportpdf',['mahasiswas' => $mahasiswas]);
+        $pdf->setPaper('A4', 'landscape');
+        return $pdf->download('LaporandDataMahasiswa.pdf');
     }
 }

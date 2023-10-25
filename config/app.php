@@ -171,6 +171,9 @@ return [
         Yajra\DataTables\DataTablesServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
     ])->toArray(),
+        
+        Barryvdh\DomPDF\ServiceProvider::class,
+
 
     /*
     |--------------------------------------------------------------------------
@@ -187,5 +190,6 @@ return [
         // 'Example' => App\Facades\Example::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
     ])->toArray(),
+    'PDF' => Barryvdh\DomPDF\Facade::class,
 
 ];

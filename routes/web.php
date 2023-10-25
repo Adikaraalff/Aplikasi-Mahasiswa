@@ -5,6 +5,7 @@ use App\Http\Controllers\DosenController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Models\Mahasiswa;
 use Illuminate\Support\Facades\Route;
 
 Route::resource('mahasiswas', MahasiswaController::class);
@@ -17,6 +18,8 @@ Route::get('registration', [AuthController::class,'registration'])->name('regist
 Route::post('post-registration',[AuthController::class, 'postRegistration'])->name('register.post');
 Route::get('dashboard', [AuthController::class,'dashboard']);
 Route::get('logout', [AuthController::class,'logout'])->name('logout');
+
+Route::get('mahasiswas-pdf', [MahasiswaController::class,'exportPdf'])->name('mahasiswa-pdf');
 
 /*
 |--------------------------------------------------------------------------
