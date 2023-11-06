@@ -28,7 +28,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Prodi:</strong>
-            {{ $dosen->prodi }}
+            {{ $dosen->prodi->nama }}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -52,7 +52,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Image:</strong>
-            <img src="/image/{{ $dosen->image }}" width="500px">
+            <img src="/image/{{ $dosen->image }}" width="100px">
         </div>
     </div>
 </div>

@@ -28,13 +28,13 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Kelas:</strong>
-            {{ $mahasiswa->kelas }}
+            {{ $mahasiswa->kelas->nama }}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Prodi:</strong>
-            {{ $mahasiswa->prodi }}
+            {{ $mahasiswa->prodi->nama }}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -64,7 +64,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Image:</strong>
-            <img src="/image/{{ $mahasiswa->image }}" width="500px">
+            <img src="/image/{{ $mahasiswa->image }}" width="100px">
         </div>
     </div>
 </div>

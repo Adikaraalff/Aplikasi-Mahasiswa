@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Models\Mahasiswa;
 use Illuminate\Support\Facades\Route;
 
+
 Route::resource('mahasiswas', MahasiswaController::class);
 Route::resource('users', UserController::class);
 Route::resource('roles', RoleController::class);
@@ -16,7 +17,7 @@ Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class,'postLogin'])->name('login.post');
 Route::get('registration', [AuthController::class,'registration'])->name('register');
 Route::post('post-registration',[AuthController::class, 'postRegistration'])->name('register.post');
-Route::get('dashboard', [AuthController::class,'dashboard']);
+Route::get('dashboard', [AuthController::class,'dashboard'])->name('dashboard');
 Route::get('logout', [AuthController::class,'logout'])->name('logout');
 
 Route::get('mahasiswas-pdf', [MahasiswaController::class,'exportPdf'])->name('mahasiswa-pdf');
